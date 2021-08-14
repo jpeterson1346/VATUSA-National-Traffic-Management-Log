@@ -21,7 +21,8 @@ async def on_message(message):
         ntml_entry_time = datetime.datetime.utcnow()
         ntml_entry_time = ntml_entry_time.strftime("%d/%H%M")
         # print(ntml_entry_time)
-        
+
+        channel = client.get_channel(661596005191647233)
         await message.channel.send("```" + ntml_entry_time + "\t" + ntml_entry + "```")
         
         exit('Finished')
