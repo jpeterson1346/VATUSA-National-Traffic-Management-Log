@@ -88,8 +88,19 @@ async def start_ntml_entry(ctx, type: str, *, content: str):
     if type == "MIT":
         ntml_entry = "```" + ntml_entry_time + "\t" + content + "```"
         await ctx.reply("NTML **" + type + "** Entry Preview:\n" + ntml_entry)
-        return ntml_entry
-                        
         
-#client.run(token)
-bot.run(token)
+        @client.command()
+        async def command(ctx):
+            await ctx.reply("Send?")
+            
+            def check(m):
+                return m.content in ["Yes","Y","yes","y"] and m.channel == channel and m.author == message.author
+            
+            msg = await client.wait_for("message", check = check)
+            if msg.content in ["Yes","Y","yes","y"]:
+                await ctx.reply("Sending!")
+            else:
+                await ctx.reply("Ok, not sending.")
+                        
+bot.run(token)        
+client.run(token)
