@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />
+	</head>
+
+	<div id='map' style='width: 1024px; height: 576px;'></div>
+	<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoianBldGVyc29uMjQiLCJhIjoiY2tkcnJrazUyMWlqZzJycXFldnRpdm5xMiJ9.02nq9rLfd8uUHDVK-iZH4w';
+	const map = new mapboxgl.Map({
+	    container: 'map', // container ID
+	    style: 'mapbox://styles/jpeterson24/ckseu0eoa4u1x17pgaa3sz11l', // style URL
+	    center: [-98.79, 38.86], // starting position [lng, lat]
+	    zoom: 3.5 // starting zoom
+	}
+	/* 
+	Add an event listener that runs
+	  when a user clicks on the map element.
+	*/
+	map.on('click', function(e) {
+	  // If the user clicked on one of your markers, get its information.
+	  var features = map.queryRenderedFeatures(e.point, {
+	    layers: ['YOUR_LAYER_NAME'] // replace with your layer name
+	  });
+	  if (!features.length) {
+	    return;
+	  }
+	  var feature = features[0];
+	
+	  // Code from the next step will go here.
+	
+	});
+	);
+	</script>
+
+</html>
