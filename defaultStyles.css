@@ -1,0 +1,165 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+.center {
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+#utcNow {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  background-color: aqua;
+  border: 2px solid;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bolder;
+}
+.side {
+  flex: 15%;
+  margin: 0;
+  padding: 0;
+}
+.side ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #cccccc;
+}
+.side ul li a {
+  display: block;
+  padding: 0.1%;
+  text-align: center;
+  text-decoration: none;
+}
+.side ul li a:link {
+  color: black;
+}
+.side ul li a:visited {
+  color: black;
+}
+.side ul li a:hover {
+  background-color: #bbbbbb;
+  color: black;
+  text-decoration: underline;
+}
+.side ul li a:active {
+  background-color: #666666;
+  color: white;
+  font-weight: bold;
+}
+.active {
+  background-color: #aaaaaa;
+  border-left: 6px solid blue;
+  color: black;
+  font-weight: bold;
+}
+.main {
+  float: left;
+  flex: 85%;
+  padding: 1%;
+  background-color: white;
+  border: 2px solid #666666;
+}
+table {
+  border: 1;
+  width: 100%;
+  border-color: grey;
+}
+table tr th {
+  display: table-cell;
+  vertical-align: inherit;
+}
+tr {
+  vertical-align: top;
+}
+.adv_banner {
+  text-align: center;
+  background-color: #99cccc;
+  color: #000099;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.adv_header {
+  vertical-align: middle;
+  text-align: center;
+  background-color: #cccccc;
+  color: #000099;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.adv_header input {
+  display: inline;
+  text-align: inherit;
+  background-color: #99cccc;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+td.nam {
+  text-align: right;
+}
+td.val {
+  text-align: left;
+  font-family: Courier, fixed;
+  font-weight: bold;
+  font-size: 10pt;
+}
+td.adv_text {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0px;
+}
+td.adv_form {
+  display: inline;
+  font-family: monospace;
+}
+.adv_form input[type=text] {
+  display: inline;
+  font-family: monospace;
+  width: auto;
+  padding: inherit;
+  margin: 0;
+  border: none;
+}
+.adv_comment {
+  display: block;
+  font-family: monospace;
+  font-weight: bold;
+  color: blue;
+  white-space: pre;
+  margin: 1em 0px;
+}
+input[type=text]:empty {
+  background-color: #99cccc;
+}
+input[type=text]:valid {
+  background-color: #cc0000;
+}
+input[type=text]:valid {
+  background-color: transparent;
+}
+input[type=text].adv_comment:hover {
+  background-color: #333333;
+}
+
+body {
+  background-color: azure;
+}
+
+iframe {
+  width: 100%;
+  height: max-content;
+}

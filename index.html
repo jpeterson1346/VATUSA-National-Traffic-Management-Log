@@ -1,37 +1,352 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<script src='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js'></script>
-		<link href='https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css' rel='stylesheet' />
-	</head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>NTML Entry Form</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="utcNow.js"></script>
+    <script src="showDate.js"></script>
+    <script src="showTime.js"></script>
+    <script src="updateFacility.js"></script>
+    <script src="toggleCtlElement.js"></script>
+    <script src="toggleElementType.js"></script>
+    <script src="defaultAdvTime.js"></script>
+    <script src="selectFacility.js"></script>
+    <script src="capitalize.js"></script>
+    <script type="text/javascript" src="Datejs\Datejs\build\date.js"></script>
+    <link rel="stylesheet" href="defaultStyles.css" />
+  </head>
+  <body onload="utcNow(); showDate(); showTime(); defaultAdvTime()">
+    <header class="center">
+      <div id="utcNow"></div>
+    </header>
 
-	<div id='map' style='width: 1024px; height: 576px;'></div>
-	<script>
-	mapboxgl.accessToken = 'pk.eyJ1IjoianBldGVyc29uMjQiLCJhIjoiY2tkcnJrazUyMWlqZzJycXFldnRpdm5xMiJ9.02nq9rLfd8uUHDVK-iZH4w';
-	const map = new mapboxgl.Map({
-	    container: 'map', // container ID
-	    style: 'mapbox://styles/jpeterson24/ckseu0eoa4u1x17pgaa3sz11l', // style URL
-	    center: [-98.79, 38.86], // starting position [lng, lat]
-	    zoom: 3.5 // starting zoom
-	}
-	/* 
-	Add an event listener that runs
-	  when a user clicks on the map element.
-	*/
-	map.on('click', function(e) {
-	  // If the user clicked on one of your markers, get its information.
-	  var features = map.queryRenderedFeatures(e.point, {
-	    layers: ['YOUR_LAYER_NAME'] // replace with your layer name
-	  });
-	  if (!features.length) {
-	    return;
-	  }
-	  var feature = features[0];
-	
-	  // Code from the next step will go here.
-	
-	});
-	);
-	</script>
+    <div class="row">
+      <div class="side">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="misc.html">Misc</a></li>
+          <li><a href="rstn.html">RSTN</a></li>
+          <li><a href="mrstn.html">MRSTN</a></li>
+          <li><a href="delay.html">Delay</a></li>
+          <li><a href="rwy.html">RWY</a></li>
+          <li><a href="sum.html">Sum</a></li>
+          <li><a href="eq.html">EQ</a></li>
+          <li><a href="log.html">Log</a></li>
+          <li><a href="myentry.html">MyEntry</a></li>
+          <li><a href="siso.html">SISO</a></li>
+          <li><a href="ice.html">ICE</a></li>
+          <li><a href="swap.html">SWAP</a></li>
+          <li><a href="count.html">Count</a></li>
+          <li><a href="pirep.html">PIREP</a></li>
+          <li><a href="ma.html">MA</a></li>
+          <li><a href="telcon.html">Telcon</a></li>
+          <li><a href="info.html">INFO</a></li>
+          <li><a href="sua.html">SUA</a></li>
+          <li><a href="pending.html">Pending</a></li>
+        </ul>
+      </div>
 
+      <div class="main">
+        <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" target="iframe_preview">
+          <fieldset>
+            <legend>Advisory Builder</legend>
+            <table>
+              <tbody>
+                <tr>
+                  <th class="adv_banner">vATCSCC Advisory</th>
+                </tr>
+                <tr>
+                  <td>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th class="adv_header" colspan="2">
+                            vATCSCC&nbsp;ADVZY&nbsp;
+                            <input
+                              class="adv_header"
+                              type="text"
+                              name="advzyNumber"
+                              id="advzyNumber"
+                              style="width: 3em"
+                              placeholder="001"
+                              pattern="[0-9]{3}"
+                              width="3"
+                              maxlength="3"
+                              autofocus
+                              required
+                            />&nbsp;
+                            <input
+                              class="adv_header"
+                              type="text"
+                              name="advFacility"
+                              id="advFacility"
+                              style="width: 7em"
+                              placeholder="ABC/ZXX"
+                              pattern="[A-Z0-9]{3}\/{0,1}[A-Z0-9]{0,3}"
+                              size="7"
+                              maxlength="7"
+                              onchange="toggleCtlElement(this,'ctlElement','ctlElementVal'); toggleElementType(this)"
+                              required
+                            />&nbsp;
+                            <span id="showDate" class="adv_header"></span>&nbsp;
+                            <select class="adv_header" style="text-align: left">
+                              <option value="pgs">
+                                CDM&nbsp;PROPOSED&nbsp;GROUND&nbsp;STOP
+                              </option>
+                              <option value="ags">CDM&nbsp;GROUND STOP</option>
+                              <option value="gsx">CDM&nbsp;GS&nbsp;CNX</option>
+                              <option value="pgdp">
+                                CDM&nbsp;PROPOSED&nbsp;GROUND&nbsp;DELAY&nbsp;PROGRAM
+                              </option>
+                              <option value="agdp">
+                                CDM&nbsp;GROUND&nbsp;DELAY&nbsp;PROGRAM
+                              </option>
+                              <option value="gdpx">
+                                CDM&nbsp;GROUND&nbsp;DELAY&nbsp;PROGRAM&nbsp;CNX
+                              </option>
+                            </select>
+                          </th>
+                        </tr>
+                        <tr>
+                          <td class="nam">
+                            <p class="msg">MESSAGE:&nbsp;</p>
+                          </td>
+                          <td class="val">
+                            <table class="adv_text">
+                              <tr class="adv_text" id="ctlElement">
+                                <td class="adv_form">
+                                  CTL&nbsp;ELEMENT:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <input
+                                    class="adv_text"
+                                    type="text"
+                                    name="ctlElementVal"
+                                    id="ctlElementVal"
+                                    placeholder="JFK"
+                                  />
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  ELEMENT&nbsp;TYPE:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <input
+                                    class="adv_text"
+                                    type="text"
+                                    name="elementTypeVal"
+                                    id="elementTypeVal"
+                                    placeholder="APT"
+                                    pattern="[A-Z0-9a-z ]{0,}"
+                                    tabindex="-1"
+                                  />
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  ADL&nbsp;TIME:&nbsp;
+                                </td>
+                                <td class="adv_form" id="showTime"></td>
+                              </tr>
+                              <tr class="adv_text">
+                                <!--Control the label based on the dropdown value from adv_header-->
+                                <td class="adv_form" id="periodLabel">
+                                  GROUND&nbsp;STOP&nbsp;PERIOD:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <input
+                                    class="adv_text"
+                                    type="text"
+                                    name="advStart"
+                                    id="advStart"
+                                    pattern="(0[1-9]|[12]\d|3[01])\/([0-1]?[0-9]|2[0-3])[0-5][0-9]"
+                                    style="max-width: 7.5ch"
+                                    placeholder="dd/hhmm"
+                                    onchange="defaultAdvTime()"
+                                    autocomplete="off"
+                                  />Z - 
+                                  <input
+                                    class="adv_text"
+                                    type="text"
+                                    name="advEnd"
+                                    id="advEnd"
+                                    pattern="(0[1-9]|[12]\d|3[01])\/([0-1]?[0-9]|2[0-3])[0-5][0-9]"
+                                    style="max-width: 7.5ch"
+                                    placeholder="dd/hhmm"
+                                    onchange="defaultAdvTime()"
+                                    autocomplete="off"
+                                  />Z&nbsp;
+                                  <input
+                                    class="adv_comment"
+                                    type="text"
+                                    name="advDuration"
+                                    id="advDuration"
+                                    style="width: 15%;"
+                                    readonly
+                                    tabindex="-1"
+                                  />
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  DEP&nbsp;FACILTIIES&nbsp;INCLUDED:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <select class="adv_text" name="depFacility" id="depFacility" onchange="selectFacility()">
+                                    <option>Manual</option>
+                                    <option>ZAB</option>
+                                    <option>ZAU</option>
+                                    <option>ZBW</option>
+                                    <option>ZDC</option>
+                                    <option>ZDV</option>
+                                    <option>ZFW</option>
+                                    <option>ZHU</option>
+                                    <option>ZID</option>
+                                    <option>ZJX</option>
+                                    <option>ZKC</option>
+                                    <option>ZLA</option>
+                                    <option>ZLC</option>
+                                    <option>ZMA</option>
+                                    <option>ZME</option>
+                                    <option>ZMP</option>
+                                    <option>ZNY</option>
+                                    <option>ZOA</option>
+                                    <option>ZOB</option>
+                                    <option>ZSE</option>
+                                    <option>ZTL</option>
+                                  </select>
+                                  <select class="adv_text" name="tier" id="tier" onchange="selectFacility()">
+                                    <option>ALL</option>
+                                    <option>ALL+Canada</option>
+                                    <option>Manual</option>
+                                    <option>Internal</option>
+                                    <option>1stTier</option>
+                                    <option>1stTier+Canada</option>
+                                    <option>2ndTier</option>
+                                    <option>2ndTier+Canada</option>
+                                    <option>EastCoast</option>
+                                    <option>Gulf</option>
+                                    <option>WestCoast</option>
+                                    <option>6West</option>
+                                    <option>10West</option>
+                                    <option>12West</option>
+                                  </select>
+                                  <textarea
+                                    class="adv_text"
+                                    type="text"
+                                    name="depFacilities"
+                                    id="depFacilities"
+                                    spellcheck="false"
+                                    style="
+                                      vertical-align: top;
+                                      font-family: monospace;
+                                      padding: 0;
+                                      max-width: 24ch;
+                                      min-width: 8ch;
+                                      max-height: 6rem;
+                                      min-height: 1rem;
+                                    "
+                                    tabindex="-1"
+                                  ></textarea>
+                                </td>
+                              </tr>
+                              <!---tr class="adv_text">
+                                <td class="adv_form">
+                                  PREVIOUS&nbsp;TOTAL,&nbsp;MAXIMUM,&nbsp;AVERAGE&nbsp;DELAYS:&nbsp;
+                                </td>
+                                <td class="adv_text" id="previousDelays">
+                                  0 / 0 / 0
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  NEW&nbsp;TOTAL,&nbsp;MAXIMUM,&nbsp;AVERAGE&nbsp;DELAYS:&nbsp;
+                                </td>
+                                <td class="adv_text" id="newDelays">
+                                  0 / 0 / 0
+                                </td>
+                              </tr--->
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  PROBABILITY&nbsp;OF&nbsp;EXTENSION:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <select class="adv_text" name="poe" id="poe">
+                                    <option>HIGH</option>
+                                    <option>MEDIUM</option>
+                                    <option>LOW</option>
+                                    <option>NONE</option>
+                                  </select>
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  IMPACTING&nbsp;CONDITION:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <input
+                                    class="adv_text"
+                                    type="text"
+                                    name="impactingCondition"
+                                    id="impactingCondition"
+                                    onchange="capitalize(this.value)"
+                                    pattern="([A-Za-z0-9 ]{1,})( \/ )([A-Z0-9a-z ]{0,})"
+                                    required
+                                  />
+                                </td>
+                              </tr>
+                              <tr class="adv_text">
+                                <td class="adv_form">
+                                  COMMENTS:&nbsp;
+                                </td>
+                                <td class="adv_form">
+                                  <textarea
+                                    class="adv_text"
+                                    type="text"
+                                    name="comments"
+                                    id="comments"
+                                    style="
+                                      vertical-align: top;
+                                      font-family: monospace;
+                                    "
+                                    rows="4"
+                                    cols="58"
+                                    wrap="hard"
+                                    >
+                                    </textarea>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nam">
+                            EFFECTIVE&nbsp;TIME:&nbsp;
+                          </td>
+                          <td class="msg" id="effectiveTime" style="font-family: monospace; font-weight: bold;"></td>
+                        </tr>
+                        <tr>
+                          <td class="nam">
+                            SIGNATURE:&nbsp;
+                          </td>
+                          <td class="msg" id="signature" style="font-family: monospace; font-weight: bold;"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
+          <input type="submit" name="submit" value="submit"/>
+        </form>
+      </div>
+    </div>
+
+    <iframe src="preview.php" name="iframe_preview" title="Advisory Preview"></iframe>
+  </body>
 </html>
