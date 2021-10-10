@@ -276,7 +276,7 @@ function selectFacility() {
     var obj = JSON.parse(facilityList[i]);
     if (obj.facility == inputFacility) {
       if (obj.tier == inputTier) {
-        document.getElementById("depFacilities").value = "(" + inputTier + ") " + obj.depFacilities;
+        document.getElementById("depFacilities").innerHTML = "(" + inputTier + ") " + obj.depFacilities;
       }
     }
   }

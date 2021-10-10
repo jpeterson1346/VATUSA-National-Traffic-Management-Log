@@ -62,11 +62,12 @@ function defaultAdvTime() {
   function setDefault() {
     document.getElementById("advStart").value = defaultStart.toString("dd/HHmm");
     document.getElementById("advEnd").value = defaultEnd.toString("dd/HHmm");
-    document.getElementById("advDuration").value = "(Duration: " + dayDiff + timeDiff + defaultDuration.toString("HH:mm") + ")";
+    document.getElementById("advDuration").value = dayDiff + timeDiff + defaultDuration.toString("HH:mm");
     document.getElementById("effectiveTime").innerHTML = 
       defaultStart.toString("ddHHmm") + " - " + defaultEnd.toString("ddHHmm");
     document.getElementById("signature").innerHTML = 
       Date.today().setTimeToNow().toString("yy/mm/dd HH:mm");
+    document.getElementById("advDuration").style.backgroundColor = "transparent";
   }
 
   // Set current values if user modifies default
@@ -104,12 +105,13 @@ function defaultAdvTime() {
       currentDuration = currentEnd - currentStart;
       currentDuration = Date.today().addMilliseconds(currentDuration);
 
-      document.getElementById("advDuration").value = "(Duration: " + dayDiff + timeDiff + currentDuration.toString("HH:mm") + ")";
+      document.getElementById("advDuration").value = dayDiff + timeDiff + currentDuration.toString("HH:mm");
       document.getElementById("advEnd").value = currentEnd.toString("dd/HHmm");
       document.getElementById("effectiveTime").innerHTML = 
         currentStart.toString("ddHHmm") + " - " + currentEnd.toString("ddHHmm");
       document.getElementById("signature").innerHTML = 
         Date.today().setTimeToNow().toString("yy/MM/dd HH:mm");
+      document.getElementById("advDuration").style.backgroundColor = "transparent";
     }
   } else {
     setDefault();

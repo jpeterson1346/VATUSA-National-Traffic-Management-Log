@@ -1,6 +1,8 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  empty-cells: show;
+  border: 1px solid gold;
 }
 .center {
   text-align: center;
@@ -8,6 +10,9 @@
 .row {
   display: flex;
   flex-wrap: wrap;
+}
+::placeholder {
+  font-weight: normal;
 }
 #utcNow {
   position: -webkit-sticky; /* Safari */
@@ -86,6 +91,8 @@ tr {
   font-weight: bold;
 }
 .adv_header {
+  width: fit-content;
+  line-height: 1em;
   vertical-align: middle;
   text-align: center;
   background-color: #cccccc;
@@ -94,12 +101,11 @@ tr {
   font-weight: bold;
 }
 .adv_header input {
-  display: inline;
+  display: inline-block;
+  overflow: hidden;
+  resize: horizontal;
   text-align: inherit;
   background-color: #99cccc;
-  color: inherit;
-  font-family: inherit;
-  font-weight: inherit;
   padding: 0;
   margin: 0;
 }
@@ -108,6 +114,8 @@ td {
   vertical-align: inherit;
 }
 td.nam {
+  display: flex;
+  flex-flow: column nowrap;
   text-align: right;
 }
 td.val {
@@ -116,19 +124,34 @@ td.val {
   font-weight: bold;
   font-size: 10pt;
 }
+td.adv_label,
+td.adv_info {
+  display: flexbox;
+  width: 25%;
+  padding: 0;
+  vertical-align: top;
+  text-align: right;
+  font-family: monospace;
+}
+td.adv_info {
+  color: blue;
+}
+td.adv_text,
+td.adv_form {
+  display: flexbox;
+  font-family: monospace;
+}
 td.adv_text {
-  display: block;
+  display: flexbox;
+  max-width: 75%;
   font-family: monospace;
   white-space: pre;
   margin: 1em 0px;
 }
-td.adv_form {
+.adv_text input[type="text"] {
   display: inline;
   font-family: monospace;
-}
-.adv_form input[type=text] {
-  display: inline;
-  font-family: monospace;
+  font-weight: bold;
   width: auto;
   padding: inherit;
   margin: 0;
@@ -142,17 +165,29 @@ td.adv_form {
   white-space: pre;
   margin: 1em 0px;
 }
-input[type=text]:empty {
+#advDuration:empty {
   background-color: #99cccc;
 }
-input[type=text]:valid {
-  background-color: #cc0000;
+input[type="text"]:empty {
+  background-color: #99cccc;
 }
-input[type=text]:valid {
+input[type="text"]:valid {
   background-color: transparent;
 }
-input[type=text].adv_comment:hover {
+input[type="text"].adv_comment:hover {
   background-color: #333333;
+}
+.adv_textarea {
+  display: block;
+  width: 43ch;
+  font-family: monospace;
+  padding: 0;
+  overflow: hidden;
+  resize: both;
+  max-width: 43ch;
+  min-height: 1rem;
+  max-height: 6rem;
+  line-height: 1rem;
 }
 
 body {
