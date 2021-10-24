@@ -1,17 +1,7 @@
-<!DOCTYPE html>
 <html>
-
 <body>
-  <?php
-    $advzyNumber = $facility = "";
-
-    $advzyNumber = $_REQUEST["advzyNumber"];
-    $facility = $_REQUEST["facility"];
-
-    echo $advzyNumber;
-    echo $facility;
-  ?>
-
+  Advisory Number: <?php echo $_POST["advzyNumber"];?><br>
+  Facility: <?php echo $_POST["facility"];?>  
 </body>
 
 </html>

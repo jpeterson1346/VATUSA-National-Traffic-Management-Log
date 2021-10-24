@@ -11,6 +11,25 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+/* RWY Stuff */
+.rwy {
+  width: 100%;
+  text-align: center;
+}
+.rwyHeaderRow {
+  background-color: #333333;
+  color: white;
+  border-bottom: 4pt solid #000099;
+  text-align: center;
+  word-wrap: normal;
+}
+
+.rwyRow {
+  width: 100%;
+  text-align: center;
+}
+
 ::placeholder {
   font-weight: normal;
 }

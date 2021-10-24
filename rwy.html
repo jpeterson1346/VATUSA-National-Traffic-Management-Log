@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Airport Configuration Panel</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="utcNow.js"></script>
+    <datalist id="weather">
+      <option value="VMC"></option>
+      <option value="LVMC"></option>
+      <option value="IMC"></option>
+      <option value="LIMC"></option>
+    </datalist>
+    <link rel="stylesheet" href="defaultStyles.css" />
+  </head>
+  <body onload="utcNow()">
+    <header class="center">
+      <div id="utcNow"></div>
+    </header>
+
+    <table name="airportConfiguration" id="airportConfiguration" class="rwy">
+      <tr>
+        <th class="rwyHeaderRow" style="max-width: 5%">Incl</th>
+        <th class="rwyHeaderRow" style="max-width: 5%">Apt</th>
+        <th class="rwyHeaderRow" style="max-width: 5%">WX</th>
+        <th class="rwyHeaderRow" style="max-width: 25%">Arrival<br>Runway</th>
+        <th class="rwyHeaderRow" style="max-width: 25%">Departure<br>Runway</th>
+        <th class="rwyHeaderRow" style="max-width: 5%">Strat<br>AAR</th>
+        <th class="rwyHeaderRow" style="max-width: 15%">AAR<br>Adjustment</th>
+        <th class="rwyHeaderRow" style="max-width: 5%">Dyn<br>AAR</th>
+        <th class="rwyHeaderRow" style="max-width: 5%">ADR</th>
+        <th class="rwyHeaderRow" style="max-width: 2%"></th>
+        <th class="rwyHeaderRow" style="max-width: 3%">Rmks</th>
+      </tr>
+      <tr class="rwyRow">
+        <td>
+          <input
+            class="rwyRow"
+            type="checkbox"
+            name="rwyIncl"
+            id="rwyIncl"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="search"
+            name="rwyApt"
+            id="rwyApt"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="search"
+            list="weather"
+            name="rwyWx"
+            id="rwyWx"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="search"
+            list="arrivalRwy"
+            name="rwyArr"
+            id="rwyArr"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="search"
+            list="departureRwy"
+            name="rwyDep"
+            id="rwyDep"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="text"
+            name="rwyStratAAR"
+            id="rwyStratAAR"
+            disabled
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="search"
+            list="aarAdjustment"
+            name="rwyAARAdj"
+            id="rwyAARAdj"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="text"
+            name="rwyDynAAR"
+            id="rwyDynAAR"
+            disabled
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="text"
+            name="rwyADR"
+            id="rwyADR"
+            disabled
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="radio"
+            name="radioButton"
+            id="radioButton"
+          />
+        </td>
+        <td>
+          <input
+            class="rwyRow"
+            type="text"
+            name="rwyRmks"
+            id="rwyRmks"
+          />
+        </td>
+      </tr>
+    </table>
+
+  </body>

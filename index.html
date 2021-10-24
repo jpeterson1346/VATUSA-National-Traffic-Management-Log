@@ -16,6 +16,7 @@
     <script src="selectFacility.js"></script>
     <script src="capitalize.js"></script>
     <script src="selectAdvisoryType.js"></script>
+    <script src="submitForm.js"></script>
     <script type="text/javascript" src="Datejs\Datejs\build\date.js"></script>
     <datalist id="advList">
       <option>CDM&nbsp;PROPOSED&nbsp;GROUND&nbsp;STOP</option>
@@ -59,11 +60,7 @@
       </div>
 
       <div class="main">
-        <form
-          method="POST"
-          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>"
-          target="iframe_preview"
-        >
+        <form name="advisoryInput" action="preview.php" method="POST" target="iframe_preview">
           <fieldset>
             <legend>Advisory Builder</legend>
             <table>
@@ -372,15 +369,14 @@
               </tbody>
             </table>
           </fieldset>
-          <input type="submit" name="submit" value="submit" />
+          <input
+            type="submit"
+            name="submit"
+          />
         </form>
       </div>
     </div>
-
-    <iframe
-      src="preview.php"
-      name="iframe_preview"
-      title="Advisory Preview"
-    ></iframe>
+    <iframe name="iframe_preview" title="Preview Advisory" src="preview.php"></iframe>
+    <div id="formatAdvisory"></div>
   </body>
 </html>
